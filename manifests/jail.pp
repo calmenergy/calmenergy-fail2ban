@@ -60,7 +60,7 @@ define fail2ban::jail (
   Optional[Enum['pyinotify', 'gamin', 'polling', 'systemd', 'auto']] $backend  = undef,
   ) {
 
-  include fail2ban::config
+  include ::fail2ban::config
 
   # Debian wheezy and older does not use jail.d
   if $::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '8') < 1 {

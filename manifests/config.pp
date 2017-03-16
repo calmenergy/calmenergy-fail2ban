@@ -56,7 +56,7 @@ class fail2ban::config {
     concat::fragment { 'jail_header':
       target  => '/etc/fail2ban/jail.local',
       content => template("${module_name}/jail.local.erb"),
-      order   => 01,
+      order   => 1,
     }
   }
   # Not wheezy
