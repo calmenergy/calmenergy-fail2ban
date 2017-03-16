@@ -1,12 +1,12 @@
 {
-  "name": "calm-fail2ban",
+  "name": "calmenergy-fail2ban",
   "version": "1.0.0",
   "author": "CALM Energy, Inc.",
   "summary": "puppet Manage fail2ban",
   "license": "Apache-2.0",
-  "source": "https://github.com/calmenergy/puppet-fail2ban",
-  "project_page": "https://github.com/calmenergy/puppet-fail2ban",
-  "issues_url": "https://github.com/lelutincalmenergy/puppet-fail2ban/issues",
+  "source": "https://github.com/calmenergy/calmenergy-fail2ban",
+  "project_page": "https://github.com/calmenergy/calmenergy-fail2ban",
+  "issues_url": "https://github.com/calmenergy/calmenergy-fail2ban/issues",
   "data_provider": "hiera",
   "dependencies": [
     {
