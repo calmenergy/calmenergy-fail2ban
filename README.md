@@ -1,5 +1,7 @@
 # fail2ban
 
+[![Build Status](https://travis-ci.org/calmenergy/calmenergy-fail2ban.png?branch=master)](https://travis-ci.org/calmenergy/calmenergy-fail2ban)  [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/calmenergy/calmenergy-fail2ban/issues)
+
 #### Table of Contents
 
 1. [Module Description - What the module does and why it is useful](#module-description)
@@ -17,10 +19,12 @@
 The fail2ban module installs the [fail2ban](https://www.fail2ban.org) package, establishes local overrides to the distribution's config files, and configures and starts the fail2ban service.
 
 It is designed to:
+
 * Play nicely with the puppetlabs firewall module, by not creating firewall rules that the firewall module will then purge.
 * Work well with the profile/roles pattern:
-  * declaring the base class sets up and runs fail2ban, but does not activate any jails.
-  * a profile that manages a particular service (e.g., sshd, apache) can also manage the jail associated with that service
+
+      * declaring the base class sets up and runs fail2ban, but does not activate any jails.
+      * a profile that manages a particular service (e.g., sshd, apache) can also manage the jail associated with that service
 
 As recommended by fail2ban's authors, this module makes no changes to the underlying fail2ban dstribution,
 instead using local overrides for configuration.
@@ -144,6 +148,7 @@ This module supports
 ## Development
 
 Contributions and pull requests are welcome.
+
 
 ## Contributors
 

@@ -60,6 +60,11 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-fail2ban">fail2ban</h1>
 
+<p><a href="https://travis-ci.org/calmenergy/calmenergy-fail2ban"><img
+src="https://travis-ci.org/calmenergy/calmenergy-fail2ban.png?branch=master"></a>
+<a href="https://github.com/calmenergy/calmenergy-fail2ban/issues"><img
+src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat"></a></p>
+
 <h4 id="label-Table+of+Contents">Table of Contents</h4>
 <ol><li>
 <p><a href="#module-description">Module Description - What the module does and
@@ -93,12 +98,20 @@ href="https://www.fail2ban.org">fail2ban</a> package, establishes local
 overrides to the distribution&#39;s config files, and configures and starts
 the fail2ban service.</p>
 
-<p>It is designed to: * Play nicely with the puppetlabs firewall module, by
-not creating firewall rules that the firewall module will then purge. *
-Work well with the profile/roles pattern:  * declaring the base class sets
-up and runs fail2ban, but does not activate any jails.  * a profile that
-manages a particular service (e.g., sshd, apache) can also manage the jail
-associated with that service</p>
+<p>It is designed to:</p>
+<ul><li>
+<p>Play nicely with the puppetlabs firewall module, by not creating firewall
+rules that the firewall module will then purge.</p>
+</li><li>
+<p>Work well with the profile/roles pattern:</p>
+<ul><li>
+<p>declaring the base class sets up and runs fail2ban, but does not activate
+any jails.</p>
+</li><li>
+<p>a profile that manages a particular service (e.g., sshd, apache) can also
+manage the jail associated with that service</p>
+</li></ul>
+</li></ul>
 
 <p>As recommended by fail2ban&#39;s authors, this module makes no changes to
 the underlying fail2ban dstribution, instead using local overrides for
@@ -249,7 +262,7 @@ href="https://github.com/calmenergy/calmenergy-fail2ban/graphs/contributors">git
 </div></div>
 
       <div id="footer">
-  Generated on Thu Mar 16 06:14:55 2017 by
+  Generated on Thu Mar 16 06:54:35 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.1).
 </div>
