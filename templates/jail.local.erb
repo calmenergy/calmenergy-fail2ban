@@ -1,0 +1,59 @@
+# Local overrides to fail2ban jail.conf
+# WARNING: Managed by puppet; do not change manually. It is possible 
+# for this file to be empty after [DEFAULT]
+# For an explanation of each of these parameters, see jail.conf
+
+[DEFAULT]
+
+<% if @ignoreip -%> 
+ignoreip = <%= @ignoreip.join(" ") %>
+<% end -%>
+
+<% if @bantime -%> 
+bantime = <%= @bantime %>
+<% end -%>
+
+<% if @findtime  -%> 
+findtime  = <%= @findtime %>
+<% end -%>
+
+<% if @maxretry -%> 
+maxretry = <%= @maxretry %>
+<% end -%>
+
+<% if @backend -%> 
+backend = <%= @backend %>
+<% end -%>
+
+<% if @usedns -%> 
+usedns = <%= @usedns %>
+<% end -%>
+
+<% if @destemail -%> 
+destemail = <%= @destemail %>
+<% end -%>
+
+<% if @email_sender -%> 
+sender = <%= @email_sender %>
+<% end -%>
+
+<% if @mta -%> 
+mta = <%= @mta %>
+<% end -%>
+
+<% if @protocol -%> 
+protocol = <%= @protocol %>
+<% end -%>
+
+<% if @chain -%> 
+chain = <%= @chain %>
+<% end -%>
+
+<% if @banaction -%> 
+banaction = <%= @banaction %>
+<% end -%>
+
+<% if @action -%> 
+action = <%= @action %>
+<% end -%>
+

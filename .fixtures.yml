@@ -1,0 +1,16 @@
+fixtures:
+  forge_modules:
+     stdlib:
+       repo:	  "puppetlabs/stdlib"
+       ref:        "4.x"
+     concat:
+       repo:       "puppetlabs/concat"
+       ref:        "'>= 2.2.0 < 3.0.0'"
+     firewall:
+       repo:       "puppetlabs/firewall"
+       ref:        "'>= 1.8.2 < 2.0.0'"
+     ip:
+       repo:       "thrnio/ip"
+       ref:        "'>= 1.0.0 < 2.0.0'"
+  symlinks:
+    fail2ban:     "#{source_dir}"

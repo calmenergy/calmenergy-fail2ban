@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: fail2ban::jail
+  
+    &mdash; Documentation by YARD 0.9.8
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::fail2ban::jail";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (f)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">fail2ban::jail</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: fail2ban::jail</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/jail.pp
+    </dd>
+  </dl>
+</div>
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+<p>Activate or define a fail2ban jail.</p>
+
+<p>All parameters are optional; providing any of them overrides the
+system-provided defaults in /etc/fail2ban/jail.conf;
+/etc/fail2ban/jail.local, /etc/fail2ban/fail2ban.conf, and
+/etc/fail2ban/fail2ban.local</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>To activate a jail that is pre-configured in Fail2ban&#39;s jail.conf or
+jail.local</p>
+</div></p>
+      
+      <pre class="example code"><code>::fail2ban::jail {&#39;sshd&#39;:}</code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>To activate a pre-configured jail, altering one or more parameters</p>
+</div></p>
+      
+      <pre class="example code"><code>::fail2ban::jail {&#39;sshd&#39;:
+     bantime =&gt; 3600,
+}</code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>To define a custom jail</p>
+</div></p>
+      
+      <pre class="example code"><code>::fail2ban::jail {&#39;myjail&#39;:
+     port   =&gt; 2718,
+     filter =&gt; &#39;myfilter&#39;,
+     log_path =&gt; &#39;/var/log/myapp/log&#39;,
+     protocol =&gt; &#39;tcp&#39;,
+     maxretry =&gt; 4,
+     findtime =&gt; 300,
+     action   =&gt; &#39;%(action_mw)s&#39;,
+     banaction =&gt; &#39;iptables-multiport&#39;,
+     bantime   =&gt; 360,
+     ignoreip  =&gt; [&#39;172.24.8.0/24&#39;, &#39;localhost&#39;, &#39;myserver.com&#39;],
+     backend   =&gt; &#39;auto&#39;,
+}</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>port</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[String], Integer[1,6535]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The port this jail should manage.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filter</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The filter to use. Corresponds to a file in /etc/fail2ban/filter.d/*.conf</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_path</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the log file to examine for this jail, to detect break-in attempts. (note
+the underlying option is &#39;logpath&#39; but that is a reserved
+metaparameter name in Puppet.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ensure</span>
+      
+      
+        <span class='type'>(<tt>Enum['present', 'absent']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>present</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>install or remove the jail.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>enabled</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>enable or disable the jail.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>protocol</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['udp', 'tcp', 'icmp', 'all']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the protocol to manage for this jail.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maxretry</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the number of tries, beyond which an error is considered a break-in
+attempt.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>findtime</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the number of seconds to look back to identify repeat tries.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>action</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A reference to one of the action templates defined in jail.conf or
+jail.local.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>banaction</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ban action; a reference to a file in /etc/fail2ban/action.d/*.conf.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>bantime</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the number of seconds to ban a host.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ignoreip</span>
+      
+      
+        <span class='type'>(<tt>Array[Variant[IP::Address::NoSubnet, IP::Address::V4::CIDR, String]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Hosts to ignore when applying this jail</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>order</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Jails are applied in ascending order according to this parameter; Only for
+Debian &lt; 7.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>backend</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum["pyinotify", "gamin", "polling", "systemd", "auto"]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The backend to use for this jail.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/jail.pp', line 41</span>
+
+define fail2ban::jail (
+  Optional[Variant[String], Integer[1,6535]] $port = undef,
+  Optional[String]  $filter = undef,
+  Optional[Stdlib::Absolutepath] $log_path = undef,
+  Enum[&#39;present&#39;, &#39;absent&#39;] $ensure    = present,
+  Boolean $enabled   = true,
+  Optional[Enum[&#39;udp&#39;, &#39;tcp&#39;, &#39;icmp&#39;, &#39;all&#39;]] $protocol = undef,
+  Optional[Integer] $maxretry  = undef,
+  Optional[Integer] $findtime  = undef,
+  Optional[String]  $action    = undef,
+  Optional[String]  $banaction = undef,
+  Optional[Integer] $bantime   = undef,
+  Array[Variant[IP::Address::NoSubnet, IP::Address::V4::CIDR, String]] $ignoreip = [],
+  Optional[Integer] $order     = undef,
+  Optional[Enum[&quot;pyinotify&quot;, &quot;gamin&quot;, &quot;polling&quot;, &quot;systemd&quot;, &quot;auto&quot;]] $backend  = undef,
+  ) {
+
+  include fail2ban::config
+
+  # Debian wheezy and older does not use jail.d
+  if $::operatingsystem == &#39;Debian&#39; and versioncmp($::operatingsystemrelease, &#39;8&#39;) &lt; 1 {
+    if $ensure != present {
+      warning(&#39;The $ensure parameter cannot be used on Debian 7 or older.&#39;)
+    }
+    concat::fragment { &quot;jail_${name}&quot;:
+      target  =&gt; &#39;/etc/fail2ban/jail.local&#39;,
+      content =&gt; template(&quot;${module_name}/jail.erb&quot;),
+      order   =&gt; $order,
+    }
+  }
+  else {
+    if $order {
+      warning(&#39;The parameter order makes sense only with Debian 7 or older.&#39;)
+    }
+    file { &quot;/etc/fail2ban/jail.d/${name}.conf&quot;:
+      ensure  =&gt; $ensure,
+      content =&gt; template(&quot;${module_name}/jail.erb&quot;),
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; $::fail2ban::config::root_group,
+      mode    =&gt; &#39;0644&#39;,
+    }
+  }
+  }</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+  Generated on Wed Mar 15 20:12:59 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.8 (ruby-2.3.1).
+</div>
+
+    </div>
+  </body>
+</html>

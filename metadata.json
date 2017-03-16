@@ -1,0 +1,51 @@
+{
+  "name": "calm-fail2ban",
+  "version": "1.0.0",
+  "author": "CALM Energy, Inc.",
+  "summary": "puppet Manage fail2ban",
+  "license": "Apache-2.0",
+  "source": "https://github.com/calmenergy/puppet-fail2ban",
+  "project_page": "https://github.com/calmenergy/puppet-fail2ban",
+  "issues_url": "https://github.com/lelutincalmenergy/puppet-fail2ban/issues",
+  "data_provider": "hiera",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.13.0 < 5.0.0"
+    },
+    {
+      "name":  "puppetlabs/concat",
+      "version_requirement": ">= 2.2.0 < 3.0.0"
+    },
+    {
+      "name":  "puppetlabs/firewall",
+      "version_requirement": ">= 1.8.2 < 2.0.0"
+    },
+    {
+      "name":  "thrnio/ip",
+      "version_requirement": ">= 1.0.0 < 2.0.0"
+    }
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease":[ "7", "8" ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease":[ "6", "7" ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease":[ "6", "7" ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.9.0 < 5.0.0"
+    }
+  ],
+  "tags": ["fail2ban", "iptables", "firewall"]
+}

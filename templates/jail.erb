@@ -1,0 +1,38 @@
+# Fail2ban jail <%= @name %> created by puppet
+
+[<%= @name %>]
+enabled = <%= @enabled %>
+<% if @port -%>
+port = <%= @port %>
+<% end -%>
+<% if @filter -%>
+filter  = <%= @filter %>
+<% end -%>
+<% if @log_path -%>
+logpath = <%= @log_path %>
+<% end -%>
+<% if @protocol -%>
+protocol = <%= @protocol %>
+<% end -%>
+<% if @maxretry -%>
+maxretry = <%= @maxretry %>
+<% end -%>
+<% if @findtime -%>
+findtime = <%= @findtime %>
+<% end -%>
+<% if @action -%>
+action = <%= @action %>
+<% end -%>
+<% if @banaction -%>
+banaction = <%= @banaction %>
+<% end -%>
+<% if @bantime -%>
+bantime = <%= @bantime %>
+<% end -%>
+<% if not @ignoreip.empty? -%>
+ignoreip = <%= @ignoreip.join(' ') %>
+<% end -%>
+<% if @backend -%>
+backend = <%= @backend %>
+<% end -%>
+

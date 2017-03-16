@@ -1,0 +1,33 @@
+# Fail2Ban local configuration file
+# All parameters are defined in fail2ban.conf
+# WARNING: Managed by puppet; do not edit manually.
+
+
+[Definition]
+<% if @log_level -%>
+loglevel = <%= @log_level %>
+<% end -%>
+
+<% if @logtarget -%>
+logtarget = <%= @logtarget %>
+<% end -%>
+
+<% if @syslogsocket -%>
+syslogsocket = <%= @syslogsocket %>
+<% end -%>
+
+<% if @socket -%>
+socket = <%= @socket %>
+<% end -%>
+
+<% if @pidfile -%>
+pidfile = <%= @pidfile %>
+<% end -%>
+
+<% if @dbfile -%>
+dbfile = <%= @dbfile %>
+<% end -%>
+
+<% if @dbpurgeage -%>
+dbpurgeage = <%= @dbpurgeage %>
+<% end -%>

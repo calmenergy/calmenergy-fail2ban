@@ -1,0 +1,27 @@
+---
+
+
+fail2ban::package_name:    'phail2banne'
+fail2ban::package_ensure:  '172.24.b3'
+fail2ban::ignoreip:        ['123.45.67.89', '132.54.76.98']
+fail2ban::log_level:       'CRITICAL'
+fail2ban::logtarget:       '/var/log/monkey'
+fail2ban::syslogsocket:    '/var/sock/woah'
+fail2ban::socket:          '/var/sock/hooey'
+fail2ban::pidfile:         '/var/run/away'
+fail2ban::dbfile:          ':memory:'
+fail2ban::dbpurgeage:      487321
+fail2ban::bantime:         601
+fail2ban::findtime:        602
+fail2ban::maxretry:        4
+fail2ban::backend:         'gamin'
+fail2ban::destemail:       'here@there'
+fail2ban::email_sender:    'nobody@nowhere'
+fail2ban::banaction:       'dummy-banaction'
+fail2ban::mta:             'tossmail'
+fail2ban::protocol:        'udp'
+fail2ban::action:          'f2bact'
+fail2ban::usedns:          'no'
+fail2ban::chain:           'ODDCHAIN'
+fail2ban::purge_jail_directory: false
+fail2ban::root_group:      'toot'
