@@ -2,7 +2,7 @@
   "name": "calmenergy-fail2ban",
   "version": "1.0.1",
   "author": "CALM Energy, Inc.",
-  "summary": "puppet Manage fail2ban",
+  "summary": "Manage fail2ban; works with roles/profiles; plays nicely with firewall module",
   "license": "Apache-2.0",
   "source": "https://github.com/calmenergy/calmenergy-fail2ban",
   "project_page": "https://github.com/calmenergy/calmenergy-fail2ban",
