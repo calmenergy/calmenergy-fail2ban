@@ -235,6 +235,8 @@ to this class provide defaults for the entire system (via
         <span class='type'>(<tt>Optional[Variant[Enum[':memory:', 'None'],Stdlib::Absolutepath]]</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
@@ -322,8 +324,7 @@ triggering an action</p>
         <span class='name'>backend</span>
       
       
-        <span class='type'>(<tt>Optional[Enum["pyinotify", "gamin", "polling",
-       "systemd", "auto"]]</tt>)</span>
+        <span class='type'>(<tt>Optional[Enum['pyinotify', 'gamin', 'polling', 'systemd', 'auto']]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
@@ -414,8 +415,7 @@ belonging to each fail2ban jail.</p>
         <span class='name'>protocol</span>
       
       
-        <span class='type'>(<tt>Optional[Enum['udp', 'tcp',
-       'icmp', 'all']]</tt>)</span>
+        <span class='type'>(<tt>Optional[Enum['udp', 'tcp', 'icmp', 'all']]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
@@ -451,10 +451,10 @@ belonging to each fail2ban jail.</p>
         <span class='name'>ignoreip</span>
       
       
-        <span class='type'>(<tt>Array[Variant[IP::Address::NoSubnet, IP::Address::V4::CIDR, String]]</tt>)</span>
+        <span class='type'>(<tt>Optional[Array[Variant[IP::Address::NoSubnet, IP::Address::V4::CIDR, String]]]</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>[&#39;127.0.0.1&#39;]</tt>)</em>
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
         &mdash;
@@ -589,9 +589,7 @@ jail.local.</p>
 73
 74
 75
-76
-77
-78</pre>
+76</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/init.pp', line 34</span>
@@ -599,7 +597,7 @@ jail.local.</p>
 class fail2ban (
   String $package_name                   = &#39;fail2ban&#39;,
   String $package_ensure                 = &#39;latest&#39;,
-  Array[Variant[IP::Address::NoSubnet, IP::Address::V4::CIDR, String]] $ignoreip = [&#39;127.0.0.1&#39;],
+  Optional[Array[Variant[IP::Address::NoSubnet, IP::Address::V4::CIDR, String]]] $ignoreip = undef,
 
   Optional[Enum[&#39;CRITICAL&#39;, &#39;ERROR&#39;,
                 &#39;WARNING&#39;, &#39;NOTICE&#39;,
@@ -609,19 +607,17 @@ class fail2ban (
   Optional[String] $syslogsocket = undef,
   Optional[String] $socket = undef,
   Optional[Stdlib::Absolutepath] $pidfile = undef,
-  Optional[Variant[Enum[&#39;:memory:&#39;, &#39;None&#39;],Stdlib::Absolutepath]] $dbfile,
+  Optional[Variant[Enum[&#39;:memory:&#39;, &#39;None&#39;],Stdlib::Absolutepath]] $dbfile = undef,
   Optional[Integer] $dbpurgeage = undef,
   Optional[Integer] $bantime    = undef,
   Optional[Integer] $findtime   = undef,
   Optional[Integer] $maxretry   = undef,
-  Optional[Enum[&quot;pyinotify&quot;, &quot;gamin&quot;, &quot;polling&quot;,
-       &quot;systemd&quot;, &quot;auto&quot;]] $backend      = undef,
+  Optional[Enum[&#39;pyinotify&#39;, &#39;gamin&#39;, &#39;polling&#39;, &#39;systemd&#39;, &#39;auto&#39;]] $backend      = undef,
   Optional[String] $destemail            = undef,
   Optional[String] $email_sender         = undef,
   Optional[String] $mta                  = undef,
   String           $chain                = &#39;FAIL2BAN&#39;,
-  Optional[Enum[&#39;udp&#39;, &#39;tcp&#39;,
-       &#39;icmp&#39;, &#39;all&#39;]] $protocol          = undef,
+  Optional[Enum[&#39;udp&#39;, &#39;tcp&#39;, &#39;icmp&#39;, &#39;all&#39;]] $protocol          = undef,
   Optional[String] $banaction             = undef,
   Optional[String] $action                = undef,
   Optional[Enum[&#39;yes&#39;, &#39;no&#39;, &#39;warn&#39;]] $usedns = undef,
@@ -648,7 +644,7 @@ class fail2ban (
 </div>
 
       <div id="footer">
-  Generated on Wed Mar 15 20:12:59 2017 by
+  Generated on Thu Mar 16 06:10:39 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.1).
 </div>

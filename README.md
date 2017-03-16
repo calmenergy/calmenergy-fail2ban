@@ -19,8 +19,8 @@ The fail2ban module installs the [fail2ban](https://www.fail2ban.org) package, e
 It is designed to:
 * Play nicely with the puppetlabs firewall module, by not creating firewall rules that the firewall module will then purge.
 * Work well with the profile/roles pattern:
-** declaring the base class sets up and runs fail2ban, but does not activate any jails.
-** a profile that manages a particular service (e.g., sshd, apache) can also manage the jail associated with that service
+  * declaring the base class sets up and runs fail2ban, but does not activate any jails.
+  * a profile that manages a particular service (e.g., sshd, apache) can also manage the jail associated with that service
 
 As recommended by fail2ban's authors, this module makes no changes to the underlying fail2ban dstribution,
 instead using local overrides for configuration.
@@ -123,7 +123,7 @@ To activate a built-in jail, modifying one or more parameters:
 All classes, types, and associated parameters are documented via puppet-strings.
 
 
-## Requirements ##
+## Requirements
 
 This module depends on:
 
@@ -132,7 +132,7 @@ This module depends on:
  * [puppetlabs-firewall](https://forge.puppetlabs.com/puppetlabs/firewall) (at least version 1.8.2)
  * [thrnio-ip](https://forge.puppetlabs.com/thrnio/ip) (at least version 1.0.0)
 
-## Compatibility ##
+## Compatibility
 
 This module supports
 
@@ -141,15 +141,15 @@ This module supports
  * CentOs 6 and 7
 
 
-##Development
+## Development
 
 Contributions and pull requests are welcome.
 
-##Contributors
+## Contributors
 
-https://github.com/calmenergy/puppet-fail2ban/graphs/contributors
+https://github.com/calmenergy/calmenergy-fail2ban/graphs/contributors
 
-##Release Notes/Etc
+## Release Notes/Etc
 
 See the CHANGELOG.md for release notes.
 

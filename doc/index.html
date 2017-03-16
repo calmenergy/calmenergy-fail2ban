@@ -95,10 +95,10 @@ the fail2ban service.</p>
 
 <p>It is designed to: * Play nicely with the puppetlabs firewall module, by
 not creating firewall rules that the firewall module will then purge. *
-Work well with the profile/roles pattern: <em>* declaring the base class
-sets up and runs fail2ban, but does not activate any jails. *</em> a
-profile that manages a particular service (e.g., sshd, apache) can also
-manage the jail associated with that service</p>
+Work well with the profile/roles pattern:  * declaring the base class sets
+up and runs fail2ban, but does not activate any jails.  * a profile that
+manages a particular service (e.g., sshd, apache) can also manage the jail
+associated with that service</p>
 
 <p>As recommended by fail2ban&#39;s authors, this module makes no changes to
 the underlying fail2ban dstribution, instead using local overrides for
@@ -218,6 +218,9 @@ href="https://forge.puppetlabs.com/puppetlabs/concat">puppetlabs-concat</a>
 <p><a
 href="https://forge.puppetlabs.com/puppetlabs/firewall">puppetlabs-firewall</a>
 (at least version 1.8.2)</p>
+</li><li>
+<p><a href="https://forge.puppetlabs.com/thrnio/ip">thrnio-ip</a> (at least
+version 1.0.0)</p>
 </li></ul>
 
 <h2 id="label-Compatibility">Compatibility</h2>
@@ -238,7 +241,7 @@ href="https://forge.puppetlabs.com/puppetlabs/firewall">puppetlabs-firewall</a>
 <h2 id="label-Contributors">Contributors</h2>
 
 <p><a
-href="https://github.com/calmenergy/puppet-fail2ban/graphs/contributors">github.com/calmenergy/puppet-fail2ban/graphs/contributors</a></p>
+href="https://github.com/calmenergy/calmenergy-fail2ban/graphs/contributors">github.com/calmenergy/calmenergy-fail2ban/graphs/contributors</a></p>
 
 <h2 id="label-Release+Notes-2FEtc">Release Notes/Etc</h2>
 
@@ -246,7 +249,7 @@ href="https://github.com/calmenergy/puppet-fail2ban/graphs/contributors">github.
 </div></div>
 
       <div id="footer">
-  Generated on Wed Mar 15 20:12:59 2017 by
+  Generated on Thu Mar 16 06:10:39 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.1).
 </div>

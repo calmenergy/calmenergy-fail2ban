@@ -97,12 +97,16 @@ main fail2ban class.</p>
 8
 9
 10
-11</pre>
+11
+12
+13</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/service.pp', line 3</span>
 
 class fail2ban::service {
+
+  include ::fail2ban
 
   service { &#39;fail2ban&#39;:
     ensure    =&gt; running,
@@ -118,7 +122,7 @@ class fail2ban::service {
 </div>
 
       <div id="footer">
-  Generated on Wed Mar 15 20:12:59 2017 by
+  Generated on Thu Mar 16 06:10:39 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.1).
 </div>

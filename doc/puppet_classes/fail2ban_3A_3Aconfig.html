@@ -181,11 +181,7 @@ main fail2ban class</p>
 92
 93
 94
-95
-96
-97
-98
-99</pre>
+95</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/config.pp', line 3</span>
@@ -209,7 +205,7 @@ class fail2ban::config {
   $backend = $::fail2ban::backend
   $usedns = $::fail2ban::usedns
   $destemail = $::fail2ban::destemail
-  $sender = $::fail2ban::email_sender
+  $email_sender = $::fail2ban::email_sender
   $mta = $::fail2ban::mta
   $protocol = $::fail2ban::protocol
   $chain = $::fail2ban::chain
@@ -222,43 +218,43 @@ class fail2ban::config {
 
 
   file {&#39;/etc/fail2ban/fail2ban.local&#39;:
-    ensure =&gt; file,
-    owner  =&gt; &#39;root&#39;,
-    group  =&gt; $root_group,
-    mode   =&gt; &#39;0400&#39;,
-    content =&gt; template(&quot;${module_name}/fail2ban.local.conf&quot;),
-    }
-
-  if $purge_jail_directory and  $::operatingsystem == &#39;Debian&#39; and versioncmp($::operatingsystemrelease, &#39;8&#39;) &lt; 1 {
-    fail (&#39;purging the jail directory on Debian 7 or older is not supported&#39;)
-  }
-
-  file { &#39;/etc/fail2ban/jail.d&#39;:
-    ensure  =&gt; directory,
-    recurse =&gt; true,
-    purge   =&gt; $purge_jail_directory,
+    ensure  =&gt; file,
     owner   =&gt; &#39;root&#39;,
     group   =&gt; $root_group,
-    mode    =&gt; &#39;0700&#39;,
+    mode    =&gt; &#39;0400&#39;,
+    content =&gt; template(&quot;${module_name}/fail2ban.local.erb&quot;),
   }
-  
 
   # Wheezy doesn&#39;t seem to support the jail.d pattern, so we
   # use jail.local concat::fragments
   if $::operatingsystem == &#39;Debian&#39; and versioncmp($::operatingsystemrelease, &#39;8&#39;) &lt; 1 {
+    if $purge_jail_directory  {
+      notify {&#39;wheezy_no_purge_jail&#39;:
+        message =&gt; &#39;purging the jail directory on Debian 7 or older is not supported&#39;,
+
+      }
+    }
     concat { &#39;/etc/fail2ban/jail.local&#39;:
       owner =&gt; &#39;root&#39;,
       group =&gt; $root_group,
       mode  =&gt; &#39;0644&#39;,
     }
     concat::fragment { &#39;jail_header&#39;:
-    target  =&gt; &#39;/etc/fail2ban/jail.local&#39;,
+      target  =&gt; &#39;/etc/fail2ban/jail.local&#39;,
       content =&gt; template(&quot;${module_name}/jail.local.erb&quot;),
-      order   =&gt; 01,
+      order   =&gt; 1,
     }
   }
   # Not wheezy
-  else { 
+  else {
+    file { &#39;/etc/fail2ban/jail.d&#39;:
+      ensure  =&gt; directory,
+      recurse =&gt; true,
+      purge   =&gt; $purge_jail_directory,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; $root_group,
+      mode    =&gt; &#39;0700&#39;,
+    }
     file { &#39;/etc/fail2ban/jail.local&#39;:
       ensure  =&gt; file,
       owner   =&gt; &#39;root&#39;,
@@ -269,7 +265,7 @@ class fail2ban::config {
   }
 
   # Create the firewall chain
-  firewallchain {$chain:
+  firewallchain {&quot;${chain}:filter:IPv4&quot;:
     purge  =&gt; false,
   }
 
@@ -279,13 +275,9 @@ class fail2ban::config {
   }
 
   firewall {&#39;000 Check fail2ban&#39;:
-    chain  =&gt; &#39;INPUT&#39;,
-    jump   =&gt; $chain,
+    chain =&gt; &#39;INPUT&#39;,
+    jump  =&gt; $chain,
   }
-    
-    
-    
-
 }</pre>
       </td>
     </tr>
@@ -294,7 +286,7 @@ class fail2ban::config {
 </div>
 
       <div id="footer">
-  Generated on Wed Mar 15 20:12:59 2017 by
+  Generated on Thu Mar 16 06:10:39 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.1).
 </div>
