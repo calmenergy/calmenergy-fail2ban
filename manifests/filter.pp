@@ -18,13 +18,15 @@
 # @param includes_before An array of files to include prior to the main definition of this filter.
 # @param includes_after An array of files to include after the main definition of this filter.
 # @param additional_defs An array of additional definition lines to include in this filter's config file. 
+# @param comment An optional comment that will be inserted in the filter's config file.
 define fail2ban::filter (
   Array[String] $failregexes,
   Enum['present', 'absent'] $ensure = 'present',
   Array[String] $ignoreregexes = [],
   Array[String] $includes_before = [],
   Array[String] $includes_after = [],
-  Array[String] $additional_defs = []
+  Array[String] $additional_defs = [],
+  String $comment = "",
   ) {
 
   include ::fail2ban::config
