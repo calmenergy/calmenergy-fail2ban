@@ -32,7 +32,8 @@ describe 'fail2ban::filter' do
             without_content(/after *=/).
             with_content(/\[Definition\]/).
             with_content(/failregex *= *aaa\s+bbb\s+ccc/).
-            with_content(/ignoreregex *= *$/)
+            with_content(/ignoreregex *= *$/).
+            with_content(/# Managed by Puppet\n\n/)
         end
       end
       context 'with all params' do
@@ -44,6 +45,7 @@ describe 'fail2ban::filter' do
             :includes_before => ['ib1', 'ib2'],
             :includes_after  => ['ia1', 'ia2'],
             :additional_defs  => ['abc', 'def = ghi'],
+            :comment  => 'Filter that applies on wigwam',
           }
         end
         let (:title) {'wigwam'}
@@ -67,7 +69,8 @@ describe 'fail2ban::filter' do
             with_content(/^abc$/).
             with_content(/^def = ghi/).
             with_content(/failregex *= *xxx$/).
-            with_content(/ignoreregex *= *iii\s*jjj$/)
+            with_content(/ignoreregex *= *iii\s*jjj$/).
+            with_content(/# Managed by Puppet\n# Filter that applies on wigwam\n/)
         end
       end
     end
