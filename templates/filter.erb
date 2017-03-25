@@ -1,5 +1,8 @@
 # Fail2ban filter file <%= @name %>.conf
 # Managed by Puppet
+<% if ! @comment.empty? -%>
+# <%= @comment %>
+<% end -%>
 
 <% if ! @includes_before.empty? or ! @includes_after.empty? -%>
 [INCLUDES]
