@@ -26,7 +26,7 @@ define fail2ban::filter (
   Array[String] $includes_before = [],
   Array[String] $includes_after = [],
   Array[String] $additional_defs = [],
-  String $comment = "",
+  String $comment = '',
   ) {
 
   include ::fail2ban::config
