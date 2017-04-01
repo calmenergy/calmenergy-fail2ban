@@ -1,6 +1,7 @@
 /pkg/*
-/spec/fixtures/modules/*
+/spec/fixtures/*
 /Gemfile.lock
 *~
 \#*\#
 /coverage/*
+.bundle
