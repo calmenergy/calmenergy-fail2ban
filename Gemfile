@@ -4,7 +4,7 @@ group :test do
   puppetversion = ENV.key?('PUPPET_VERSION') ? "= #{ENV['PUPPET_VERSION']}" : ['>= 4.9']
   gem "rake"
   gem "puppet", puppetversion
-  gem "rspec", '< 3.2.0'
+  gem "rspec", '> 3.4.0'
   gem "rspec-puppet"
   gem "puppetlabs_spec_helper"
   gem "metadata-json-lint"
