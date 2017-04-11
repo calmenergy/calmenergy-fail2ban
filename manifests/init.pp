@@ -69,8 +69,8 @@ class fail2ban (
   contain ::fail2ban::config
   contain ::fail2ban::service
 
-  Class['::fail2ban::install'] ->
-  Class['::fail2ban::config'] ~>
-  Class['::fail2ban::service']
+  Class['::fail2ban::install']
+  -> Class['::fail2ban::config']
+  ~> Class['::fail2ban::service']
 
 }

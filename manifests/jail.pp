@@ -43,6 +43,7 @@
 # @param ignoreip Hosts to ignore when applying this jail
 # @param order  Jails are applied in ascending order according to this parameter; Only for Debian < 7.
 # @param backend The backend to use for this jail.
+# @param comment An optional comment that will be inserted in the jail's config file.
 define fail2ban::jail (
   Optional[Variant[String, Integer[1,6535]]] $port = undef,
   Optional[String]  $filter = undef,
@@ -58,6 +59,7 @@ define fail2ban::jail (
   Array[Variant[IP::Address::NoSubnet, IP::Address::V4::CIDR, String]] $ignoreip = [],
   Optional[Integer] $order     = undef,
   Optional[Enum['pyinotify', 'gamin', 'polling', 'systemd', 'auto']] $backend  = undef,
+  Optional[String] $comment = '',
   ) {
 
   include ::fail2ban::config

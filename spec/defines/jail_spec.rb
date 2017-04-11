@@ -25,6 +25,7 @@ describe 'fail2ban::jail' do
               with_order(10). # 10 is the default provided by concat module.
               with_content(/^\[fooey\]/).
               with_content(/^enabled *= *true/).
+              with_content(/# Fail2ban jail fooey created by puppet\n\n/).
               without_content(/port/).
               without_content(/filter/).
               without_content(/logpath/).
@@ -46,6 +47,7 @@ describe 'fail2ban::jail' do
               with_mode('0644').
               with_content(/^\[fooey\]/).
               with_content(/^enabled *= *true/).
+              with_content(/# Fail2ban jail fooey created by puppet\n\n/).
               without_content(/port/).
               without_content(/filter/).
               without_content(/logpath/).
@@ -76,7 +78,8 @@ describe 'fail2ban::jail' do
             :bantime   => 187,
             :ignoreip  => ['foo.com', '172.24.8.0/24', '132.98.47.1'],
             :order     => 25,
-            :backend   => 'polling'
+            :backend   => 'polling',
+            :comment   => 'Jail protecting against yeah ddos',
           }
         end
         let (:title) {'wigwam'}
@@ -90,6 +93,7 @@ describe 'fail2ban::jail' do
             is_expected.to contain_concat__fragment('jail_wigwam').
               with_target('/etc/fail2ban/jail.local').
               with_order(25).
+              with_content(/# Fail2ban jail wigwam created by puppet\n# Jail protecting against yeah ddos\n/).
               with_content(/^\[wigwam\]/).
               with_content(/^enabled *= *false/).
               with_content(/port *= *4731/).
@@ -112,6 +116,7 @@ describe 'fail2ban::jail' do
               with_owner('root').
               with_group(expected_root_group).
               with_mode('0644').
+              with_content(/# Fail2ban jail wigwam created by puppet\n# Jail protecting against yeah ddos\n/).
               with_content(/^\[wigwam\]/).
               with_content(/^enabled *= *false/).
               with_content(/port *= *4731/).
