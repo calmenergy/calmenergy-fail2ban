@@ -1,4 +1,7 @@
 # Fail2ban jail <%= @name %> created by puppet
+<% if ! @comment.empty? -%>
+# <%= @comment %>
+<% end -%>
 
 [<%= @name %>]
 enabled = <%= @enabled %>
