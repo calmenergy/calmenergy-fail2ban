@@ -11,8 +11,8 @@ port = <%= @port %>
 <% if @filter -%>
 filter  = <%= @filter %>
 <% end -%>
-<% if @log_path -%>
-logpath = <%= @log_path %>
+<% if ! @log_path_array.empty? -%>
+logpath = <%= @log_path_array.join("\n          ") %>
 <% end -%>
 <% if @protocol -%>
 protocol = <%= @protocol %>

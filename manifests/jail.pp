@@ -29,9 +29,9 @@
 # @param port  The port this jail should manage.
 # @param filter The filter to use. Corresponds to a file in
 #     /etc/fail2ban/filter.d/*.conf
-# @param log_path the log file to examine for this jail, to detect break-in
-#     attempts. (note the underlying option is 'logpath' but that
-#     is a reserved metaparameter name in Puppet.
+# @param log_path an array of log files to examine for this jail, to detect
+#     break-in attempts. (note the underlying option is 'logpath' but that
+#     is a reserved metaparameter name in Puppet).
 # @param ensure install or remove the jail.
 # @param enabled enable or disable the jail.
 # @param protocol the protocol to manage for this jail. 
@@ -47,7 +47,7 @@
 define fail2ban::jail (
   Optional[Variant[String, Integer[1,6535]]] $port = undef,
   Optional[String]  $filter = undef,
-  Optional[Stdlib::Absolutepath] $log_path = undef,
+  Optional[Variant[Stdlib::Absolutepath, Array[Stdlib::Absolutepath]]] $log_path = [],
   Enum['present', 'absent'] $ensure    = present,
   Boolean $enabled   = true,
   Optional[Enum['udp', 'tcp', 'icmp', 'all']] $protocol = undef,
@@ -64,6 +64,11 @@ define fail2ban::jail (
 
   include ::fail2ban::config
 
+  if type($log_path) =~ Type[String] {
+    $log_path_array = [ $log_path ]
+  } else {
+    $log_path_array = $log_path
+  }
   # Debian wheezy and older does not use jail.d
   if $::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '8') < 1 {
     if $ensure != present {

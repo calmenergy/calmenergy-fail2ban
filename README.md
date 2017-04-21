@@ -97,7 +97,7 @@ To activate a built-in jail, modifying one or more parameters:
    ::fail2ban::jail {'myjail':
         port   => 2718,
         filter => 'myfilter',
-        log_path => '/var/log/myapp/log',
+        log_path => ['/var/log/myapp/log', '/var/log/myapp/other.log tail'],
         protocol => 'tcp',
         maxretry => 4,
         findtime => 300,
