@@ -67,7 +67,7 @@ describe 'fail2ban::jail' do
           {
             :port => 4731,
             :filter => 'myfilter',
-            :log_path => '/var/log/yeah',
+            :log_path => ['/var/log/yeah', '/var/log/zogzog tail'],
             :ensure   => 'absent',
             :enabled  => false,
             :protocol => 'udp',
@@ -99,6 +99,7 @@ describe 'fail2ban::jail' do
               with_content(/port *= *4731/).
               with_content(/filter *= *myfilter/).
               with_content(/logpath *= *\/var\/log\/yeah/).
+              with_content(/          \/var\/log\/zogzog tail/).
               with_content(/protocol *= *udp/).
               with_content(/maxretry *= *28/).
               with_content(/findtime *= *304/).
@@ -122,6 +123,7 @@ describe 'fail2ban::jail' do
               with_content(/port *= *4731/).
               with_content(/filter *= *myfilter/).
               with_content(/logpath *= *\/var\/log\/yeah/).
+              with_content(/          \/var\/log\/zogzog tail/).
               with_content(/protocol *= *udp/).
               with_content(/maxretry *= *28/).
               with_content(/findtime *= *304/).
@@ -130,6 +132,44 @@ describe 'fail2ban::jail' do
               with_content(/bantime *= *187/).
               with_content(/ignoreip *= *foo\.com 172\.24\.8\.0\/24 132\.98\.47\.1/).
               with_content(/backend *= *polling/)
+          end
+        end
+      end
+      # Test with log_path as a string for backward compatibility
+      context 'with all log_path as a string' do
+        let (:params) do
+          {
+            :port => 4731,
+            :filter => 'myfilter',
+            :log_path => '/var/log/yeah tail',
+            :ensure   => 'absent',
+            :enabled  => false,
+            :protocol => 'udp',
+            :maxretry => 28,
+            :findtime => 304,
+            :action    => 'flipout',
+            :banaction => 'shout',
+            :bantime   => 187,
+            :ignoreip  => ['foo.com', '172.24.8.0/24', '132.98.47.1'],
+            :order     => 25,
+            :backend   => 'polling',
+            :comment   => 'Jail protecting against yeah ddos',
+          }
+        end
+        let (:title) {'wigwam'}
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_fail2ban__jail('wigwam') }
+        if (facts[:operatingsystem] == 'Debian' and facts[:operatingsystemmajrelease] < '8')
+          it {is_expected.to contain_notify('no_ensure_wheezy') }
+          it do
+            is_expected.to contain_concat__fragment('jail_wigwam').
+              with_content(/logpath *= *\/var\/log\/yeah/)
+          end
+        else
+          it { is_expected.to contain_notify('order_only_with_wheezy') }
+          it do
+            is_expected.to contain_file('/etc/fail2ban/jail.d/wigwam.conf').
+              with_content(/logpath *= *\/var\/log\/yeah/)
           end
         end
       end
