@@ -65,6 +65,8 @@ class fail2ban (
   }
   ) {
 
+  require ::epel
+
   contain ::fail2ban::install
   contain ::fail2ban::config
   contain ::fail2ban::service

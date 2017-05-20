@@ -40,6 +40,7 @@ describe 'fail2ban' do
             with_purge_jail_directory(true).
             with_root_group(expected_root_group)
         end
+        it { is_expected.to contain_class('epel') }
         it { is_expected.to contain_class('fail2ban::install').that_comes_before('Class[fail2ban::config]') }
         it { is_expected.to contain_class('fail2ban::config') }
         it do
