@@ -65,7 +65,15 @@ class fail2ban (
   }
   ) {
 
-  require ::epel
+    # epel is only needed on RHEL / CentOS
+  case $::osfamily {
+    'RedHat': {
+      require ::epel
+    }
+    default: {
+      # do nothing
+    }
+  }
 
   contain ::fail2ban::install
   contain ::fail2ban::config

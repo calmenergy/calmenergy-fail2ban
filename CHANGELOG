@@ -1,3 +1,6 @@
+2018-07-19 Release 1.2.0
+- Made dependency o stahnma/epel contingent on being RedHat
+- Allowed Puppet 5
 2017-05-19 Release 1.1.0
 - Added dependency on stahnma/epel
 2017-03-16 Release 1.0.1

@@ -1,6 +1,6 @@
 {
   "name": "calmenergy-fail2ban",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "CALM Energy, Inc.",
   "summary": "Manage fail2ban; works with roles/profiles; plays nicely with firewall module",
   "license": "Apache-2.0",
@@ -48,7 +48,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.0.0 < 5.0.0"
+      "version_requirement": ">= 4.0.0 < 6.0.0"
     }
   ],
   "tags": ["fail2ban", "iptables", "firewall"]
